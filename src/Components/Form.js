@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import InputComponent from './InputComponent';
 import { Row, Col } from '@zendeskgarden/react-grid';
 import { Well, Title } from '@zendeskgarden/react-notifications';
