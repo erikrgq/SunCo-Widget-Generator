@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import { ThemeProvider, DEFAULT_THEME } from '@zendeskgarden/react-theming';
-import Form from '../src/components/Form';
+import Form from './components/form';
 
 function App() {
   return (
