@@ -9,7 +9,7 @@ export const DATA = {
         inputType: 'text',
         reducer: updateIntegrationId
     },
-    buisnessName: {
+    businessName: {
         text: 'Business Name',
         placeholder: 'Business Name',
         type: 'input',

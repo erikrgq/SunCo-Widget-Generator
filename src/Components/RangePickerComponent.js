@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 const RangePickerComponent = (props) => {
     const { text, key, reducer } = props.data;
-    const [rangeValue, setRangeValue] = useState('250');
+    const [rangeValue, setRangeValue] = useState('58');
     const dispatch = useDispatch();
     const dispatchValue = (value) => {
         const payload = {

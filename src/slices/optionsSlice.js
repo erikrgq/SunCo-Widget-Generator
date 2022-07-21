@@ -6,7 +6,7 @@ const optionsSlice = createSlice({
         customColors: {
             brandColor: '65758e',
             conversationColor: '65758e',
-            actionColor: '65758e',
+            actionColor: '65758e'
         },
         menuItems: {
             imageUpload: false,
@@ -14,7 +14,7 @@ const optionsSlice = createSlice({
             shareLocation: false
         },
         prechatCapture: {
-            avatarUrl: '',
+            avatarUrl: ''
         },
         customText: {
             headerText: '',
@@ -33,8 +33,8 @@ const optionsSlice = createSlice({
         fixedHeader: false,
         buttonIconUrl: '',
         buttonWidth: '',
-        buttonwHeight: '',
-        businessIconUrl: '',
+        buttonHeight: '',
+        businessIconUrl: ''
     },
     reducers: {
         setValue(state, action) {
