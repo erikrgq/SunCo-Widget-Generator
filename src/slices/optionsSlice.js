@@ -32,8 +32,8 @@ const optionsSlice = createSlice({
         canUserSeeConversationList: false,
         fixedHeader: false,
         buttonIconUrl: '',
-        buttonWidth: '',
-        buttonHeight: '',
+        buttonWidth: '58',
+        buttonHeight: '58',
         businessIconUrl: ''
     },
     reducers: {

@@ -2,3 +2,12 @@ input,
 textarea {
   margin-bottom: 20px;
 }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 16px 0;
+  z-index: 10;
+}

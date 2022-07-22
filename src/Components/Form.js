@@ -9,7 +9,8 @@ import { Alert, Close } from '@zendeskgarden/react-notifications';
 import { DATA } from '../data/data';
 import ColorPickerComponent from './ColorPickerComponent';
 import RangePickerComponent from './RangePickerComponent';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateIntegrationId } from '../slices/integrationSlice';
 
 const Form = () => {
   const integrationID = useSelector((state) => state.integration.integrationId);
@@ -18,11 +19,19 @@ const Form = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [bookmarklet, setBookmarklet] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setisBookmarkletCreated(false);
     setShowAlert(false);
   }, [options, integrationID]);
+
+  useEffect(() => {
+    const url = new URLSearchParams(window.location.search);
+    const params = url.get('integrationId');
+
+    dispatch(updateIntegrationId(params));
+  }, []);
 
   const copyWidgetCode = () => {
     navigator
@@ -94,28 +103,28 @@ const Form = () => {
         businessIconUrl: "${options.businessIconUrl}"
       }
     );
-    `;
+  `;
 
   return (
     <form>
       <Grid>
         {showAlert && 
-        <Row justifyContent='center'>
-          <Col size={6}>
-            <br></br>
-            <Alert type='success'>
-              <Title>Copied</Title>
-              <Close onClick={() => setShowAlert(false)} aria-label="Close Alert" />
-            </Alert>
-          </Col>
-        </Row>
+          <Row justifyContent='center'>
+            <Col size={6}>
+              <br></br>
+              <Alert type='success'>
+                <Title>Copied</Title>
+                <Close onClick={() => setShowAlert(false)} aria-label="Close Alert" />
+              </Alert>
+            </Col>
+          </Row>
         }
-        <Row justifyContent="center">
+        <Row justifyContent="center" style={{'marginBottom': '36px'}}>
           <Col sm={6}>
             <h1>Widget Generator</h1>
             <h2>General</h2>
             <Well>
-              <InputComponent data={DATA.integrationId} />
+              <InputComponent data={DATA.integrationId} value={integrationID} />
               <InputComponent data={DATA.businessName} />
             </Well>
             <h2>Options</h2>
@@ -156,19 +165,19 @@ const Form = () => {
           </Col>
         </Row>
         <br></br>
-        <Row justifyContent='center'>
+        <Row justifyContent='center' className='footer'>
           <Col size={2}>
             <Button onClick={copyWidgetCode}>Copy Widget Code</Button>
           </Col>
           {isBookmarkletCreated && !isLoading && 
           <Col size={2} alignSelf='center' style={{"textAlign": "center"}}>
             <Tooltip content="Drag to bookmarks">
-              <Anchor href={`javascript:(function(){let script = document.createElement('script');script.src=${bookmarklet};document.body.appendChild(script);})();`} target="_blank">{options.businessName}</Anchor>
+              <Anchor href={`javascript:(function(){if ('Smooch' in window) {try{Smooch.destroy();} catch(e) {};};let script = document.createElement('script');script.src=${bookmarklet};document.body.appendChild(script);})();`} target="_blank">&#128278; {options.businessName}</Anchor>
             </Tooltip>
           </Col>}
           {!isBookmarkletCreated && 
             <Col size={2} alignSelf='center'>
-              <Button onClick={createBookmarklet}>Create Bookmarklet</Button>
+              <Button onClick={createBookmarklet}>Create Bookmarklet &#128278;</Button>
             </Col>
           }
           {isLoading && 

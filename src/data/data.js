@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { updateIntegrationId } from "../slices/integrationSlice";
 import { setValue } from "../slices/optionsSlice";
 
@@ -116,7 +117,7 @@ export const DATA = {
         reducer: setValue
     },
     avatarUrl: {
-        text: 'Avata Url',
+        text: 'Avatar Url',
         type: 'input',
         inputType: 'URL',
         placeholder: 'JPG, PNG, or GIF format & 200 x 200 pixels.',

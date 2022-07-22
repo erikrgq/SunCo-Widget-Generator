@@ -4,6 +4,7 @@ import { Field, Label, Input, Checkbox, Hint } from "@zendeskgarden/react-forms"
 
 const InputComponent = (props) => {
   const { text, placeholder, type, hint, inputType, key, reducer } = props.data;
+  const { value } = props;
   const [isDisabled, setIsDisabled] = useState(true);
 
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const InputComponent = (props) => {
     return (
       <Field>
         <Label isRegular>{text}</Label>
-        <Input placeholder={placeholder} type={inputType} onChange={(event) => dispatchValue(event.target.value)}/>
+        <Input placeholder={placeholder} type={inputType} onChange={(event) => dispatchValue(event.target.value)} {...value && {'value': value}} />
       </Field>
     );
   };
