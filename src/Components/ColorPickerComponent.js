@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
-import { ColorpickerDialog } from '@zendeskgarden/react-colorpickers';
-import { Field, Label, InputGroup } from '@zendeskgarden/react-forms';
+import { Field, Label, InputGroup, Input } from '@zendeskgarden/react-forms';
 import { useDispatch } from 'react-redux';
+import { Row, Col, Grid } from '@zendeskgarden/react-grid';
+import ToolTip from './ToolTip';
 
 const ColorPickerComponent = (props) => {
-  const { text, key, reducer } = props.data;
-  const [color, setColor] = useState('#ffffff')
+  const { text, key, reducer, toolTip } = props.data;
+  const style = {
+
+  }
   const dispatch = useDispatch();
+  const [color, setColor] = useState('#ffffff');
+
   const dispatchValue = (hex) => {
+    hex = hex.split('#')[1];
+    
     const payload = {
       key,
       value: hex
@@ -15,27 +22,33 @@ const ColorPickerComponent = (props) => {
 
     dispatch(reducer(payload));
   }
+
   return (
-    <>
-      <Field>
+    <Grid>
+      <Row>
+        <Col sm={0}>
+          <ToolTip content={toolTip} title={text} />
+        </Col>
+        <Col sm={11}>
+        <Field>
           <Label isRegular>{text}</Label>
-          <InputGroup style={{ zIndex: 1 }}>
-          <ColorpickerDialog
-            color={color}
-            zIndex={10}
-            focusInset
-            buttonProps={{
-              'aria-label': 'choose your favorite color'
-            }}
-            onChange={(color) => {
-              setColor(color.hex);
-              dispatchValue(color.hex);
-            }}
-          />
-        </InputGroup>
-      </Field>
-      <br></br>
-    </>
+          <br></br>
+          <InputGroup>
+            <Input type="text" value={color} onChange={(event) => setColor(event.target.value)} />
+            <input
+              style={{"height": "40px", "marginBottom": "0", "borderRadius": "4px"}}
+              type="color"
+              value={color}
+              onChange={(event) => {
+                setColor(event.target.value);
+                dispatchValue(event.target.value);
+              }}/>
+          </InputGroup>
+          </Field>
+        </Col>
+      </Row>
+        <br></br>
+    </Grid>
   )
 };
 

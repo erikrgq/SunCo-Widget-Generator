@@ -14,7 +14,8 @@ const optionsSlice = createSlice({
             shareLocation: false
         },
         prechatCapture: {
-            avatarUrl: ''
+            avatarUrl: '',
+            enabled: false
         },
         customText: {
             headerText: '',

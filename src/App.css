@@ -3,8 +3,13 @@ textarea {
   margin-bottom: 20px;
 }
 
+.tooltip__img {
+  max-width: 200px;
+}
+
 .footer {
   position: fixed;
+  border-top: 1px solid #d8dcde;
   bottom: 0;
   width: 100%;
   background-color: #fff;
