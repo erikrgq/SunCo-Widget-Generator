@@ -5,12 +5,9 @@ import { Row, Col, Grid } from '@zendeskgarden/react-grid';
 import ToolTip from './ToolTip';
 
 const ColorPickerComponent = (props) => {
-  const { text, key, reducer, toolTip } = props.data;
-  const style = {
-
-  }
   const dispatch = useDispatch();
-  const [color, setColor] = useState('#ffffff');
+  const { text, key, reducer, toolTip } = props.data;
+  const [color, setColor] = useState(props.defaultColor);
 
   const dispatchValue = (hex) => {
     hex = hex.split('#')[1];

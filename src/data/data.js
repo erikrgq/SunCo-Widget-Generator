@@ -1,5 +1,6 @@
 import { updateIntegrationId } from "../slices/integrationSlice";
 import { setValue } from "../slices/optionsSlice";
+import { enableSmoochOpen, setSeconds } from "../slices/smoochOpen";
 
 export const DATA = {
     integrationId: {
@@ -49,14 +50,6 @@ export const DATA = {
             <p>Disabled by default.</p>
         `
     },
-    // TODO add custom Smooch.someFunction({}) slice
-    // popWidgetAutomatically: {
-    //     text: 'Automatically Open Widget',
-    //     placeholder: '10 Seconds',
-    //     type: 'checkbox-input',
-    //     hint: 'Opens widget after set seconds',
-    //     reducer: null
-    // },
     imageUpload: {
         text: 'Image Upload',
         type: 'checkbox',
@@ -165,17 +158,6 @@ export const DATA = {
             <p>Image in the actual widget button on the website; before it is opened. aka the Launcher.</p>
         `
     },
-    avatarUrl: {
-        text: 'Avatar Url',
-        type: 'input',
-        inputType: 'URL',
-        placeholder: 'JPG, PNG, or GIF format & 200 x 200 pixels.',
-        key: ['prechatCapture', 'avatarUrl'],
-        reducer: setValue,
-        toolTip: `
-            <p>Image in the Prechat Capture (if one is enabled below)</p>
-        `
-    },
     backgroundImageUrl: {
         text: 'Background Image Url',
         type: 'input',
@@ -197,6 +179,17 @@ export const DATA = {
             <p>Allows you to capture a user’s name and email before the start of a conversation.</p>
         `,
         inputs: [
+            {
+                text: 'Prechat Avatar Url',
+                type: 'input',
+                inputType: 'URL',
+                placeholder: 'JPG, PNG, or GIF format & 200 x 200 pixels.',
+                key: ['prechatCapture', 'avatarUrl'],
+                reducer: setValue,
+                toolTip: `
+                    <p>Image in the Prechat Capture (if one is enabled below)</p>
+                `
+            },
             {
                 text: 'Prechat Capture Greeting',
                 type: 'input',
@@ -280,5 +273,23 @@ export const DATA = {
         placeholder: 'Welcome back! How can we help?',
         key: ['customText', 'introAppText'],
         reducer: setValue
-    }
+    },
+    popWidgetAutomatically: {
+        text: 'Automatically Open Widget',
+        type: 'checkbox-input',
+        hint: 'Opens widget after set seconds',
+        reducer: enableSmoochOpen,
+        inputs: [
+            {
+                text: 'Seconds',
+                type: 'input',
+                inputType: 'number',
+                placeholder: '1000 =  1 second',
+                reducer: setSeconds,
+                toolTip: `
+                    <p>The default value is 1 second (1000). If the input is left blank</p>
+                `
+            }
+        ]
+    },
 };

@@ -24,7 +24,7 @@ export default function ToolTip(props) {
     }
     >
         <span>
-            <img src={info} />
+            <img alt={title} src={info} />
         </span>
     </Tooltip>
   );

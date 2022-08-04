@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { ThemeProvider, DEFAULT_THEME } from '@zendeskgarden/react-theming';
+import { ThemeProvider } from '@zendeskgarden/react-theming';
 import {
   ToastProvider,
 } from '@zendeskgarden/react-notifications';
@@ -10,7 +10,7 @@ function App() {
   return (
     <ThemeProvider>
       <ToastProvider zIndex={1}>
-        <div className="App" style={{ padding: DEFAULT_THEME.space.md }} >
+        <div className="App" >
           <Form />
         </div>
       </ToastProvider>

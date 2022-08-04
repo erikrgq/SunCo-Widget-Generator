@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Field, Label, Input, Checkbox, Hint, InputGroup } from "@zendeskgarden/react-forms";
+import { Field, Label, Input, Checkbox, Hint } from "@zendeskgarden/react-forms";
 import { Row, Col, Grid } from '@zendeskgarden/react-grid';
 import ToolTip from './ToolTip';
 
@@ -10,7 +10,7 @@ const InputComponent = (props) => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const dispatch = useDispatch();
-  const dispatchValue = (value, key) => {
+  const dispatchValue = (reducer, value, key) => {
     const payload = {
       key,
       value
@@ -36,7 +36,7 @@ const InputComponent = (props) => {
               <Label isRegular>
                 {text}
               </Label>
-              <Input placeholder={placeholder} type={inputType} onChange={(event) => dispatchValue(event.target.value, key)} {...value && {'value': value}} />
+              <Input required placeholder={placeholder} type={inputType} onChange={(event) => dispatchValue(reducer ,event.target.value, key)} {...value && {'value': value}} />
             </Field>
           </Col>
           </Row>
@@ -54,7 +54,7 @@ const InputComponent = (props) => {
         </Col>
         <Col sm={11}>
           <Field>
-            <Checkbox onChange={(event) => dispatchValue(event.target.checked, key)}>
+            <Checkbox onChange={(event) => dispatchValue(reducer, event.target.checked, key)}>
               <Label isRegular>
                 {text}
               </Label>
@@ -82,7 +82,7 @@ const InputComponent = (props) => {
               <Field>
                 <Checkbox onChange={(event) => {
                     setIsDisabled(!isDisabled)
-                    dispatchValue(event.target.checked, key);
+                    dispatchValue(reducer, event.target.checked, key);
                     }
                   }
                 >
@@ -96,17 +96,17 @@ const InputComponent = (props) => {
         
         <br></br>
         {inputs && inputs.map((input, index) => (
-          <Grid>
+          <Grid key={index}>
             <Row>
               <Col sm={0}>
                 <ToolTip content={input.toolTip} title={input.text} />
               </Col>
               <Col sm={11}>
-                <Field key={index}>
+                <Field>
                   <Label isRegular>
                     {input.text}
                   </Label>
-                  <Input disabled={isDisabled} placeholder={input.placeholder} type={input.inputType} onChange={(event) => dispatchValue(event.target.value, input.key)} {...value && {'value': value}} /> 
+                  <Input disabled={isDisabled} placeholder={input.placeholder} type={input.inputType} onChange={(event) => dispatchValue(input.reducer, event.target.value, input.key)} {...value && {'value': value}} /> 
                 </Field>
               </Col>
             </Row>

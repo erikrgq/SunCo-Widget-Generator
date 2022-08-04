@@ -27,7 +27,7 @@ const RangePickerComponent = (props) => {
                     <Field>
                         <Label isRegular>{text}</Label>
                         <Hint>{rangeValue} Pixels</Hint>
-                        <Range max={500} step={1} onChange={e => {
+                        <Range max={75} step={1} onChange={e => {
                                     setRangeValue(e.target.value)
                                     dispatchValue(e.target.value);
                                 }

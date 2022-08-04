@@ -3,16 +3,30 @@ textarea {
   margin-bottom: 20px;
 }
 
+.form {
+  padding-bottom: 60px;
+}
+
 .tooltip__img {
   max-width: 200px;
 }
 
 .footer {
   position: fixed;
+  display: flex;
+  justify-content: center;
   border-top: 1px solid #d8dcde;
   bottom: 0;
   width: 100%;
   background-color: #fff;
   padding: 16px 0;
   z-index: 10;
+}
+
+.footer__container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-width: 576px;
+  max-width: 50%;
 }
