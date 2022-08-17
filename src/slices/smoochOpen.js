@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const MILLI_SECONDS = 1000;
+
 const smoochOpen = createSlice({
     name: 'smoochOpen',
     initialState:{
@@ -11,7 +13,7 @@ const smoochOpen = createSlice({
             state.enable = action.payload;
         },
         setSeconds(state, action) {
-            state.seconds = action.payload;
+            state.seconds = action.payload * MILLI_SECONDS;
         }
     }
 });

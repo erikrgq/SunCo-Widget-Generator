@@ -1,3 +1,4 @@
+import { enableadvancedStyling, setHeaderHeight, setHeaderUrl } from "../slices/advancedStyling";
 import { updateIntegrationId } from "../slices/integrationSlice";
 import { setValue } from "../slices/optionsSlice";
 import { enableSmoochOpen, setSeconds } from "../slices/smoochOpen";
@@ -284,12 +285,40 @@ export const DATA = {
                 text: 'Seconds',
                 type: 'input',
                 inputType: 'number',
-                placeholder: '1000 =  1 second',
+                placeholder: '1',
                 reducer: setSeconds,
                 toolTip: `
-                    <p>The default value is 1 second (1000). If the input is left blank</p>
+                    <p>The default value is 1 second. If the input is left blank</p>
                 `
             }
         ]
     },
+    addCustomStyles: {
+        text: "Advanced Styling Options",
+        type: "checkbox-input",
+        hint: "Adds custom styling to widget chat",
+        reducer: enableadvancedStyling,
+        inputs: [
+            {
+                text: 'Header Image',
+                type: 'input',
+                inputType: 'URL',
+                placeholder: 'https://www.some-image.png',
+                reducer: setHeaderUrl,
+                toolTip: `
+                    <p>Add a image URL that ends with .png or .jpg</p>
+                `
+            },
+            {
+                text: 'Header Height',
+                type: 'input',
+                inputType: 'number',
+                placeholder: '50',
+                reducer: setHeaderHeight,
+                toolTip: `
+                    <p>The default height will be 64 Pixels if left blank</p>
+                `
+            }
+        ]
+    }
 };
