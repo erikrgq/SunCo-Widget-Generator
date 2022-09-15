@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InputComponent from './InputComponent';
-import { Row, Col, Grid } from '@zendeskgarden/react-grid';
+import Home from './Home';
+import { Row, Col } from '@zendeskgarden/react-grid';
 import { Well } from '@zendeskgarden/react-notifications';
 import { Button, Anchor } from '@zendeskgarden/react-buttons';
 import { Tooltip } from '@zendeskgarden/react-tooltips';
@@ -22,7 +23,6 @@ const Form = () => {
   const integrationID = useSelector((state) => state.integration.integrationId);
   const options = useSelector((state) => state.options);
   const smoochOpen = useSelector((state) => state.smoochOpen);
-  const advancedStyling = useSelector((state) => state.advancedStyling);
   const [isBookmarkletCreated, setisBookmarkletCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [bookmarklet, setBookmarklet] = useState('');
@@ -41,14 +41,6 @@ const Form = () => {
     dispatch(updateIntegrationId(INTEGRATION_ID));
     dispatch(setValue({value: BUSINESS_NAME, key: DATA.businessName.key}));
   }, []);
-
-  const IFRAME_STYLES = {
-    height: `${advancedStyling.headerHeight}px`,
-    backgroundImage: `url("${advancedStyling.headerUrl}")`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    objectFit: "contain",
-  };
 
   const handleToast = (message, type = "success") => {
         addToast(
@@ -103,7 +95,7 @@ const Form = () => {
   const copyShareLink = () => {
     if (!integrationID || !options.businessName) return handleToast('Integration ID and Business Name is Required', "error");
 
-    navigator.clipboard.writeText(`https://luxury-sunflower-809724.netlify.app/?integrationId=${integrationID}&businessName=${options.businessName}`);
+    navigator.clipboard.writeText(`https://luxury-sunflower-809724.netlify.app/sunshine/?integrationId=${integrationID}&businessName=${options.businessName}`);
 
     handleToast('Copied Link');
   };
@@ -118,27 +110,8 @@ const Form = () => {
     `
   };
 
-  const enableAdvancedStyles = () => {
-    if (!advancedStyling) return '';
-
-    return `
-    .then(function() {
-      const iframe = document.querySelector('#web-messenger-container #header');
-      const style = document.createElement('style');
-      const doc = iframe.contentDocument;
-      Object.assign(iframe.style, ${IFRAME_STYLES})
-      style.type = 'text/css';
-  
-      doc.head.appendChild(style);
-      },
-      function(err) {
-        console.log(error);
-      });
-    `;
-  };
-
   const headfunction = `!function(o,p,s,e,c){var i,a,h,u=[],d=[];function t(){var t="You must provide a supported major version.";try{if(!c)throw new Error(t);var e,n="https://cdn.smooch.io/",r="smooch";if((e="string"==typeof this.response?JSON.parse(this.response):this.response).url){var o=p.getElementsByTagName("script")[0],s=p.createElement("script");s.async=!0;var i=c.match(/([0-9]+).?([0-9]+)?.?([0-9]+)?/),a=i&&i[1];if(i&&i[3])s.src=n+r+"."+c+".min.js";else{if(!(4<=a&&e["v"+a]))throw new Error(t);s.src=e["v"+a]}o.parentNode.insertBefore(s,o)}}catch(e){e.message===t&&console.error(e)}}o[s]={init:function(){i=arguments;var t={then:function(e){return d.push({type:"t",next:e}),t},catch:function(e){return d.push({type:"c",next:e}),t}};return t},on:function(){u.push(arguments)},render:function(){a=arguments},destroy:function(){h=arguments}},o.__onWebMessengerHostReady__=function(e){if(delete o.__onWebMessengerHostReady__,o[s]=e,i)for(var t=e.init.apply(e,i),n=0;n<d.length;n++){var r=d[n];t="t"===r.type?t.then(r.next):t.catch(r.next)}a&&e.render.apply(e,a),h&&e.destroy.apply(e,h);for(n=0;n<u.length;n++)e.on.apply(e,u[n])};var n=new XMLHttpRequest;n.addEventListener("load",t),n.open("GET","https://"+e+".webloader.smooch.io/",!0),n.responseType="json",n.send()}(window,document,"Smooch","${integrationID}","5");`;
-  const bodyFunction = `Smooch.init({integrationId: "${integrationID}",backgroundImageUrl: "${options.backgroundImageUrl}",soundNotificationEnabled:${convertBool(options.soundNotificationEnabled)},businessName: "${options.businessName}",canUserSeeConversationList:${convertBool(options.canUserSeeConversationList)},fixedHeader:${convertBool(options.fixedHeader)},buttonIconUrl: "${options.buttonIconUrl}",buttonWidth: "${options.buttonWidth}px",buttonHeight: "${options.buttonHeight}px",businessIconUrl: "${options.businessIconUrl}",customColors: {brandColor: "${options.customColors.brandColor}",conversationColor: "${options.customColors.conversationColor}",actionColor: "${options.customColors.actionColor}"},menuItems: {imageUpload:${convertBool(options.menuItems.imageUpload)},fileUpload:${convertBool(options.menuItems.fileUpload)},shareLocation:${convertBool(options.menuItems.shareLocation)}},prechatCapture: {avatarUrl: "${options.prechatCapture.avatarUrl}"},customText: {prechatCaptureGreetingText: "${options.customText.prechatCaptureGreetingText}",prechatCaptureNameLabel: "${options.customText.prechatCaptureNameLabel}",prechatCaptureNamePlaceholder: "${options.customText.prechatCaptureNamePlaceholder}",prechatCaptureEmailLabel: "${options.customText.prechatCaptureEmailLabel}",prechatCaptureEmailPlaceholder: "${options.customText.prechatCaptureEmailPlaceholder}",prechatCaptureConfirmationText: "${options.customText.prechatCaptureConfirmationText}"}})${enableAdvancedStyles()}; ${enableSmoochOpen()}`;
+  const bodyFunction = `Smooch.init({integrationId: "${integrationID}",backgroundImageUrl: "${options.backgroundImageUrl}",soundNotificationEnabled:${convertBool(options.soundNotificationEnabled)},businessName: "${options.businessName}",canUserSeeConversationList:${convertBool(options.canUserSeeConversationList)},fixedHeader:${convertBool(options.fixedHeader)},buttonIconUrl: "${options.buttonIconUrl}",buttonWidth: "${options.buttonWidth}px",buttonHeight: "${options.buttonHeight}px",businessIconUrl: "${options.businessIconUrl}",customColors: {brandColor: "${options.customColors.brandColor}",conversationColor: "${options.customColors.conversationColor}",actionColor: "${options.customColors.actionColor}"},menuItems: {imageUpload:${convertBool(options.menuItems.imageUpload)},fileUpload:${convertBool(options.menuItems.fileUpload)},shareLocation:${convertBool(options.menuItems.shareLocation)}},prechatCapture: {avatarUrl: "${options.prechatCapture.avatarUrl}"},customText: {prechatCaptureGreetingText: "${options.customText.prechatCaptureGreetingText}",prechatCaptureNameLabel: "${options.customText.prechatCaptureNameLabel}",prechatCaptureNamePlaceholder: "${options.customText.prechatCaptureNamePlaceholder}",prechatCaptureEmailLabel: "${options.customText.prechatCaptureEmailLabel}",prechatCaptureEmailPlaceholder: "${options.customText.prechatCaptureEmailPlaceholder}",prechatCaptureConfirmationText: "${options.customText.prechatCaptureConfirmationText}"}})${enableSmoochOpen()}`;
   const body = `
     Smooch.init({
       integrationId: "${integrationID}",
@@ -173,16 +146,16 @@ const Form = () => {
         prechatCaptureEmailPlaceholder: "${options.customText.prechatCaptureEmailPlaceholder}",
         prechatCaptureConfirmationText: "${options.customText.prechatCaptureConfirmationText}"
       }
-    })${enableAdvancedStyles()};
+    })
     ${enableSmoochOpen()}
   `;
 
   return (
+    <>
+    <Home />
     <form className='form'>
-      <Grid>
         <Row justifyContent="center">
           <Col sm={6}>
-            <h1>Widget Generator</h1>
             <h2>General</h2>
             <Well>
               <InputComponent data={DATA.integrationId} value={integrationID} />
@@ -233,16 +206,6 @@ const Form = () => {
                 <Accordion.Section>
                   <Accordion.Header>
                     <Accordion.Label>
-                      Advanced Styling Options
-                    </Accordion.Label>
-                  </Accordion.Header>
-                  <Accordion.Panel>
-                    <InputComponent data={DATA.addCustomStyles} />
-                  </Accordion.Panel>
-                </Accordion.Section>
-                <Accordion.Section>
-                  <Accordion.Header>
-                    <Accordion.Label>
                       Prechat Capture
                     </Accordion.Label>
                   </Accordion.Header>
@@ -264,7 +227,6 @@ const Form = () => {
             </Well>
           </Col>
         </Row>
-      </Grid>
       <br></br>
         <footer className='footer'>
           <div className='footer__container'>
@@ -276,7 +238,7 @@ const Form = () => {
             {
             isBookmarkletCreated && !isLoading && 
               <Tooltip content="Drag to bookmarks">
-                <Anchor href={`javascript:(function(){if ('Smooch' in window) {try{Smooch.destroy();} catch(e) {};};let script = document.createElement('script');script.src=${bookmarklet};document.body.appendChild(script);})();`} target="_blank">&#128278; {options.businessName}</Anchor>
+                <Anchor href={`javascript:(function(){if ('Smooch' in window) {try{Smooch.destroy();} catch(e) {};};let script = document.createElement('script');script.src=${bookmarklet};document.body.appendChild(script);})();`} target="_blank">SunCo - {options.businessName} &#128278;</Anchor>
               </Tooltip>
             }
             {
@@ -295,6 +257,7 @@ const Form = () => {
           </div>
         </footer>
     </form>
+    </>
   );
 };
 

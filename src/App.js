@@ -1,20 +1,37 @@
 import './App.css';
 import React from 'react';
-import { ThemeProvider } from '@zendeskgarden/react-theming';
+
+import { Row, Col, Grid } from '@zendeskgarden/react-grid';
 import {
-  ToastProvider,
-} from '@zendeskgarden/react-notifications';
+  createBrowserRouter,
+  Link,
+  NavLink,
+  RouterProvider,
+} from "react-router-dom";
+import Home from './components/Home';
 import Form from './components/Form';
+import ZendeskForm from './components/ZendeskForm';
+
+const router = createBrowserRouter([
+  {
+    path: "/sunshine",
+    element: <Form />,
+  },
+  {
+      path: "/native",
+      element: <ZendeskForm />
+  }
+]);
 
 function App() {
   return (
-    <ThemeProvider>
-      <ToastProvider zIndex={1}>
-        <div className="App" >
-          <Form />
-        </div>
-      </ToastProvider>
-    </ThemeProvider>
+    <div className="App" >
+      <RouterProvider router={router}>
+        <Grid>
+          <Home />
+        </Grid>
+      </RouterProvider>
+    </div>
   );
 }
 

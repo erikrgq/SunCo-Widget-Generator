@@ -2,6 +2,7 @@ import { enableadvancedStyling, setHeaderHeight, setHeaderUrl } from "../slices/
 import { updateIntegrationId } from "../slices/integrationSlice";
 import { setValue } from "../slices/optionsSlice";
 import { enableSmoochOpen, setSeconds } from "../slices/smoochOpen";
+import { setKey, setNativeName } from '../slices/nativeWdiget';
 
 export const DATA = {
     integrationId: {
@@ -320,5 +321,23 @@ export const DATA = {
                 `
             }
         ]
+    },
+    nativeKey : {
+        text: 'Native Messaging Widget Key',
+        type: 'input',
+        toolTip: `
+            The Native Messaging Widget Key is unique to each Web Widget that you create and can be found in the Zendesk Admin Center (Channels > Messaging > Installation)
+
+            <img className="tooltip__img" src="https://theme.zdassets.com/theme_assets/10738080/a3d4c220779caa00545a1938100b06ece9eb0f79.png" alt="Native Messaging Widget Key Screenshot">
+        `,
+        reducer: setKey,
+        placeholder: '56431234-adsffeg3-vfre4-asd2',
+    },
+    nativeName: {
+        text: 'Native Messaging Bookmarklet Name',
+        type: 'input',
+        toolTip: 'This will be used to differentiate from other bookmarklets',
+        reducer: setNativeName,
+        placeholder: 'ACME'
     }
 };

@@ -4,6 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@zendeskgarden/react-theming';
+import {
+  ToastProvider,
+} from '@zendeskgarden/react-notifications';
 
 import store from './store/store';
 
@@ -11,7 +15,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider>
+        <ToastProvider zIndex={1}>
+          <App />
+        </ToastProvider>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );
