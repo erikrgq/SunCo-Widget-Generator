@@ -17,6 +17,7 @@ import {
   Close,
   useToast
 } from '@zendeskgarden/react-notifications';
+import Preview from './Preview';
 import { setValue } from '../slices/optionsSlice';
 
 const Form = () => {
@@ -95,7 +96,7 @@ const Form = () => {
   const copyShareLink = () => {
     if (!integrationID || !options.businessName) return handleToast('Integration ID and Business Name is Required', "error");
 
-    navigator.clipboard.writeText(`https://luxury-sunflower-809724.netlify.app/sunshine/?integrationId=${integrationID}&businessName=${options.businessName}`);
+    navigator.clipboard.writeText(`https://luxury-sunflower-809724.netlify.app/?integrationId=${integrationID}&businessName=${options.businessName}`);
 
     handleToast('Copied Link');
   };
@@ -155,7 +156,7 @@ const Form = () => {
     <Home />
     <form className='form'>
         <Row justifyContent="center">
-          <Col sm={6}>
+          <Col sm={3}>
             <h2>General</h2>
             <Well>
               <InputComponent data={DATA.integrationId} value={integrationID} />
@@ -225,6 +226,15 @@ const Form = () => {
                 </Accordion.Section>
               </Accordion>
             </Well>
+          </Col>
+          <Col sm={3}>
+            <h2>Preview</h2>
+              <Well style={{
+                position: 'sticky',
+                top: '20px'
+              }}>
+                <Preview />
+              </Well>
           </Col>
         </Row>
       <br></br>

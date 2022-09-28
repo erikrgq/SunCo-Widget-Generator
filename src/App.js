@@ -1,11 +1,9 @@
 import './App.css';
 import React from 'react';
 
-import { Row, Col, Grid } from '@zendeskgarden/react-grid';
+import { Grid } from '@zendeskgarden/react-grid';
 import {
   createBrowserRouter,
-  Link,
-  NavLink,
   RouterProvider,
 } from "react-router-dom";
 import Home from './components/Home';
@@ -14,7 +12,7 @@ import ZendeskForm from './components/ZendeskForm';
 
 const router = createBrowserRouter([
   {
-    path: "/sunshine",
+    path: "/",
     element: <Form />,
   },
   {

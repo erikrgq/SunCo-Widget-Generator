@@ -113,7 +113,7 @@ const ZendeskForm = () => {
                 {
                 isBookmarkletCreated && !isLoading && 
                 <Tooltip content="Drag to bookmarks">
-                    <Anchor href={`javascript:(function(){const widget={zeSnippet:document.getElementById('ze-snippet'),widgetIframe:document.querySelector("[data-product='web_widget']"),launcher:document.getElementById('launcher')}; if (widget.zeSnippet || widget.launcher) {widget.zeSnippet.remove();widget.launcher.remove()};let script = document.createElement('script');script.id="ze-snippet";script.src="https://static.zdassets.com/ekr/snippet.js?key=${key}";document.body.appendChild(script);})();`} target="_blank">Native - {name} &#128278;</Anchor>
+                    <Anchor href={`javascript:(function(){function addWidget() {let script = document.createElement('script');script.id="ze-snippet";script.src="https://static.zdassets.com/ekr/snippet.js?key=${key}";document.body.appendChild(script);}localStorage.clear();setTimeout(addWidget(),"5000");})();`} target="_blank">Native - {name} &#128278;</Anchor>
                 </Tooltip>
                 }
                 {
