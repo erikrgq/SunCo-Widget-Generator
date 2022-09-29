@@ -30,10 +30,9 @@ const ZendeskForm = () => {
 
     useEffect(() => {
         const url = new URLSearchParams(window.location.search);
-        console.log(url);
         const WIDGET_KEY = url.get('widgetKey');
         const BOOKMARKLET_NAME = url.get('bookmarkletName');
-        console.log(WIDGET_KEY);
+
         dispatch(setKey(WIDGET_KEY));
         dispatch(setNativeName(BOOKMARKLET_NAME));
     }, []);

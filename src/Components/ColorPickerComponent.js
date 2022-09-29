@@ -4,10 +4,13 @@ import { useDispatch } from 'react-redux';
 import { Row, Col, Grid } from '@zendeskgarden/react-grid';
 import ToolTip from './ToolTip';
 
-const ColorPickerComponent = (props) => {
+const ColorPickerComponent = ({
+  data,
+  defaultColor
+}) => {
   const dispatch = useDispatch();
-  const { text, key, reducer, toolTip } = props.data;
-  const [color, setColor] = useState(props.defaultColor);
+  const { text, key, reducer, toolTip } = data;
+  const [color, setColor] = useState(defaultColor);
 
   const dispatchValue = (hex) => {
     hex = hex.split('#')[1];
@@ -31,7 +34,13 @@ const ColorPickerComponent = (props) => {
           <Label isRegular>{text}</Label>
           <br></br>
           <InputGroup>
-            <Input type="text" value={color} onChange={(event) => setColor(event.target.value)} />
+            <Input
+              type="text" 
+              value={color} 
+              onChange={(event) => {
+                setColor(event.target.value);
+                dispatchValue(event.target.value);
+              }}/>
             <input
               style={{"height": "40px", "marginBottom": "0", "borderRadius": "4px"}}
               type="color"

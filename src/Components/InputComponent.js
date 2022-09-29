@@ -4,9 +4,11 @@ import { Field, Label, Input, Checkbox, Hint } from "@zendeskgarden/react-forms"
 import { Row, Col, Grid } from '@zendeskgarden/react-grid';
 import ToolTip from './ToolTip';
 
-const InputComponent = (props) => {
-  const { text, placeholder, type, hint, inputType, key, reducer, inputs, toolTip } = props.data;
-  const { value } = props;
+const InputComponent = ({
+  data,
+  value
+}) => {
+  const { text, placeholder, type, hint, inputType, key, reducer, inputs, toolTip } = data;
   const [isDisabled, setIsDisabled] = useState(true);
 
   const dispatch = useDispatch();
