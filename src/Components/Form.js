@@ -156,7 +156,7 @@ const Form = () => {
     <Home />
     <form className='form'>
         <Row justifyContent="center">
-          <Col sm={3}>
+          <Col sm={5}>
             <h2>General</h2>
             <Well>
               <InputComponent data={DATA.integrationId} value={integrationID} />
@@ -229,12 +229,7 @@ const Form = () => {
           </Col>
           <Col sm={3}>
             <h2>Preview</h2>
-              <Well style={{
-                position: 'sticky',
-                top: '20px'
-              }}>
-                <Preview />
-              </Well>
+            <Preview />
           </Col>
         </Row>
       <br></br>

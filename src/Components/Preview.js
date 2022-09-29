@@ -48,7 +48,7 @@ export default function Preview() {
   const options = useSelector((state) => state.options);
 
   return (
-    <div>
+    <div className='preview-container'>
         <div className='preview'>
             <div 
                 className='preview-header'
@@ -56,9 +56,6 @@ export default function Preview() {
                     backgroundColor: `#${options.customColors.brandColor}`
                 }}
             >
-                <div className='preview-header__item preview-header__item--start'>
-                    <img src={Back} alt='exit' />
-                </div>
                 <div className='preview-header__item'>
                     {options.businessIconUrl && <img className='preview-header__logo' src={options.businessIconUrl} alt="logo" />}
                 </div>

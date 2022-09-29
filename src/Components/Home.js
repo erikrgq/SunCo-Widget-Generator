@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <Grid>
         <Row justifyContent='center'>
-            <Col sm={6}>
+            <Col sm={8}>
                 <h1>Widget Generator</h1>
                 <div className='tabs'>
                     <NavLink to="/" className={({isActive}) => isActive ? 'tabs__tab tabs__tab--active' : 'tabs__tab'} end>
