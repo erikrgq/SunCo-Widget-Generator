@@ -17,6 +17,35 @@ export const DATA = {
             <p>-- For new Zendesk Accounts, you can also find this in your Zendesk Admin Center (Support Admin > Integrations > Custom Integrations)</p>
         `
     },
+    jwt: {
+        text: 'Enable JWT',
+        hint: 'Allows you to preset an already logged in user (i.e. demonstrating SSO)',
+        type: 'checkbox-input',
+        inputs: [
+            {
+                text: 'External ID',
+                type: 'input',
+                key: ['externalId'],
+                inputType: 'text',
+                placeholder: 'user_external_id',
+                toolTip: `
+                    <p>Optional. User's external id, which can be passed in init() as an alternative to login()</p>
+                `,
+                reducer: setValue,
+            },
+            {
+                text: 'JWT',
+                type: 'input',
+                key: ['jwt'],
+                inputType: 'text',
+                placeholder: 'your_jwt',
+                toolTip: `
+                    <p>Optional. User's authentication token, which can be passed in init() as an alternative to login()</p>
+                `,
+                reducer: setValue,
+            },
+        ]
+    },
     businessName: {
         text: 'Business Name',
         placeholder: 'Business Name',

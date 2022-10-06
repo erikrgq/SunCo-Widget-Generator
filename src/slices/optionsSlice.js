@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const optionsSlice = createSlice({
     name: 'options',
     initialState:{
+        jwt: '',
+        externalId: '',
         customColors: {
             brandColor: '65758e',
             conversationColor: '65758e',

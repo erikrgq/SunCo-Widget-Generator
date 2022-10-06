@@ -84,7 +84,9 @@ const InputComponent = ({
               <Field>
                 <Checkbox onChange={(event) => {
                     setIsDisabled(!isDisabled)
-                    dispatchValue(reducer, event.target.checked, key);
+                    if (reducer) {
+                      dispatchValue(reducer, event.target.checked, key);
+                    }
                     }
                   }
                 >
@@ -97,7 +99,7 @@ const InputComponent = ({
         </Grid>
         
         <br></br>
-        {inputs && inputs.map((input, index) => (
+        {inputs && !isDisabled && inputs.map((input, index) => (
           <Grid key={index}>
             <Row>
               <Col sm={0}>

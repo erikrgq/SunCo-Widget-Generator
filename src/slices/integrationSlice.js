@@ -3,12 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const integrationSlice = createSlice({
     name: 'integration',
     initialState:{
-        integrationId: ''
+        integrationId: '',
     },
     reducers: {
         updateIntegrationId(state, action) {
             state.integrationId = action.payload;
-        }
+        },
     }
 });
 
