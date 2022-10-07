@@ -1,7 +1,7 @@
 import { enableadvancedStyling, setHeaderHeight, setHeaderUrl } from "../slices/advancedStyling";
 import { updateIntegrationId } from "../slices/integrationSlice";
 import { setValue } from "../slices/optionsSlice";
-import { enableSmoochOpen, setSeconds } from "../slices/smoochOpen";
+import { enableConversation, enableSmoochOpen, setSeconds } from "../slices/smoochOpen";
 import { setKey, setNativeName } from '../slices/nativeWdiget';
 
 export const DATA = {
@@ -55,6 +55,16 @@ export const DATA = {
         reducer: setValue,
         toolTip: `
             <p>A custom business name for the Web Messenger. This will appear in the main/top Header of the widget. (ex: "FloBot" "Nike Support", etc)</p>
+        `
+    },
+    disableCreateConversation: {
+        text: 'Disable Bot',
+        hint: 'Disable Bot from automatically being Triggered when Widget opens',
+        type: 'checkbox',
+        inputType: 'checkbox',
+        reducer: enableConversation,
+        toolTip: `
+            <p>The Generator includes this custom snippet/feature by default. Checking this box removes the snippet and your bot will therefore not be invoked until the user sends their first message.</p>
         `
     },
     soundNotificationEnabled: {

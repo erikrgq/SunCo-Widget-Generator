@@ -6,7 +6,8 @@ const smoochOpen = createSlice({
     name: 'smoochOpen',
     initialState:{
         enable: false,
-        seconds: 1000
+        seconds: 1000,
+        createConversation: true
     },
     reducers: {
         enableSmoochOpen(state, action) {
@@ -14,9 +15,12 @@ const smoochOpen = createSlice({
         },
         setSeconds(state, action) {
             state.seconds = action.payload * MILLI_SECONDS;
+        },
+        enableConversation(state, action) {
+            state.createConversation = action.payload;
         }
     }
 });
 
-export const { setSeconds, enableSmoochOpen } = smoochOpen.actions;
+export const { setSeconds, enableSmoochOpen, enableConversation } = smoochOpen.actions;
 export default smoochOpen.reducer;
