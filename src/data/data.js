@@ -58,8 +58,8 @@ export const DATA = {
         `
     },
     disableCreateConversation: {
-        text: 'Disable Bot',
-        hint: 'Disable Bot from automatically being Triggered when Widget opens',
+        text: 'Disable Bot from automatically being Triggered when Widget opens',
+        hint: 'Disabling would require user to post message to initiate Bot',
         type: 'checkbox',
         inputType: 'checkbox',
         reducer: enableConversation,

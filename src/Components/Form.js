@@ -54,7 +54,7 @@ const Form = () => {
           ),
           'top'
         );
-      };
+  };
 
   const copyWidgetCode = () => {
     if (!integrationID || !options.businessName) return handleToast('Integration ID and Business Name is Required', "error");
