@@ -109,7 +109,7 @@ const Form = () => {
   };
 
   const createConvo = () => {
-    if (isCreateConvo.createConversation) return '';
+    if (!isCreateConvo.createConversation) return '';
 
     return `Smooch.on("widget:opened",function(){if (!Smooch.getUser() || Smooch.getConversations().length === 0) {Smooch.createConversation();}});`;
   };
@@ -176,7 +176,7 @@ const Form = () => {
                     <Accordion.Label>General</Accordion.Label>
                   </Accordion.Header>
                   <Accordion.Panel>
-                    <InputComponent data={DATA.disableCreateConversation} />
+                    <InputComponent data={DATA.disableCreateConversation} value={smoochOpen.createConversation} />
                     <InputComponent data={DATA.soundNotificationEnabled} />
                     <InputComponent data={DATA.canUserSeeConversationList} />
                   </Accordion.Panel>

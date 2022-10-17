@@ -56,7 +56,7 @@ const InputComponent = ({
         </Col>
         <Col sm={11}>
           <Field>
-            <Checkbox onChange={(event) => dispatchValue(reducer, event.target.checked, key)}>
+            <Checkbox onChange={(event) => dispatchValue(reducer, event.target.checked, key)} {...value && {'checked': value}}>
               <Label isRegular>
                 {text}
               </Label>
